@@ -1,6 +1,13 @@
 
-<script setup>
+<script >
 import Header from './components/Header.vue';
+
+export default{
+             name:'App',
+             components:{
+                Header
+             }
+      }
 
 </script>
 
@@ -10,7 +17,7 @@ import Header from './components/Header.vue';
   </div>
 </template>
 
-<style scoped>
+<style >
    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 * {
   box-sizing: border-box;
