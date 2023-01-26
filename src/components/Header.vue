@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1>{{ title }}</h1>
-        <Button text="add task" color="green"/>
+        <Button @click="onClick()" text="add task" color="green"/>
     </header>
 </template>
 
@@ -13,6 +13,11 @@ import Button from './Button.vue';
              props:['title'],
              components:{
                 Button
+             },
+             methods:{
+                onClick(){
+                    console.log("hi");
+                }
              }
       }
 </script>
