@@ -5,12 +5,6 @@
       "text": "meeting at school",
       "day": "10 november 9:am",
       "reminder": true
-    },
-    {
-      "id": 3,
-      "text": "wash my clotes",
-      "day": "2june 12:00 pm",
-      "reminder": true
     }
   ]
 }
