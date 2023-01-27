@@ -16,19 +16,24 @@ export default{
                 showAddTask:false
               }
              },
-             created(){
-              this.tasks=[
-                {id:1, text:"go to the doctor", day:"30 march 9:00pm",reminder:true},
-                {id:2, text:"meeting at school", day:"10 november 9:am", reminder:true},
-                {id:3, text:"wash my car", day:"2june 12:00 pm", reminder:true}
-            ]
+             async created(){
+              this.tasks=await this.fetchTasks()
              },
              methods:{
               toggleAddTask(){
                  this.showAddTask=!this.showAddTask;
               },
-              addTask(task){
-                this.tasks=[...this.tasks,task]
+              async addTask(task){
+                   const res=await fetch('http://localhost:5000/tasks',{
+                    method:'POST',
+                    headers:{
+                      'Content-type':'application/json',
+                    },
+                    body:JSON.stringify(task),
+                   })
+                   const data=await res.json()
+
+                this.tasks=[...this.tasks,data]
               },
               deleteTask(id){
                 if(confirm('are you sure?')){
@@ -38,6 +43,16 @@ export default{
               toggleReminder(id){
                   this.tasks=this.tasks.map((task)=>task.id===id ?
                   {...task,reminder:!task.reminder}: task);
+              },
+              async fetchTasks(){
+                const res=await fetch('http://localhost:5000/tasks')
+                const data=await res.json()
+                return data
+              },
+              async fetchTask(id){
+                const res=await fetch(`http://localhost:5000/tasks/${id}`)
+                const data=await res.json()
+                return data
               }
              }
       }
